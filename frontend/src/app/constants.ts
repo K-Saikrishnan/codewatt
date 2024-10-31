@@ -1,0 +1,7 @@
+export enum LOCAL_STORAGE {
+  PLACEHOLDER = 'PLACEHOLDER',
+}
+
+export enum SESSION_STORAGE {
+  PLACEHOLDER = 'PLACEHOLDER',
+}

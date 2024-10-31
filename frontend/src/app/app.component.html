@@ -1,0 +1,9 @@
+<header><h1>Codewatt</h1></header>
+
+<main>
+  @for (idea of ideas$ | async; track idea.id) {
+    <app-idea [idea]="idea"></app-idea>
+  } @empty {
+    <p>No ideas found</p>
+  }
+</main>
