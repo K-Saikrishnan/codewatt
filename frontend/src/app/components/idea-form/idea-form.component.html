@@ -1,0 +1,25 @@
+<form autocomplete="on" autocapitalize="on" spellcheck="true" [formGroup]="ideaForm" (ngSubmit)="createIdea()">
+  <section class="p-fluid">
+    <label for="title">Title (max 50 chars)</label>
+    <input id="title" type="text" [maxLength]="50" [required]="true" pInputText formControlName="title" />
+  </section>
+
+  <section class="p-fluid">
+    <label for="desc">Description (max 500 chars)</label>
+    <textarea
+      id="desc"
+      [rows]="6"
+      [maxLength]="500"
+      [required]="true"
+      pInputTextarea
+      formControlName="description"
+    ></textarea>
+  </section>
+
+  <section class="p-fluid">
+    <label for="tags">Tags (max 5)</label>
+    <p-chips id="tags" [max]="7" separator="," [required]="true" formControlName="tags" />
+  </section>
+
+  <p-button size="small" type="submit" [disabled]="ideaForm.invalid">Create</p-button>
+</form>

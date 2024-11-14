@@ -1,21 +1,12 @@
-import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IdeaComponent } from './components/idea/idea.component';
-import { Idea } from './models/idea.model';
-import { IdeaService } from './services/idea.service';
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AsyncPipe, IdeaComponent],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  public ideas$: Observable<Idea[]>;
-
-  constructor(private ideaService: IdeaService) {
-    this.ideas$ = this.ideaService.getIdeas();
-  }
-}
+export class AppComponent {}

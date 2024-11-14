@@ -1,11 +1,52 @@
-@import 'primeng/resources/themes/lara-light-purple/theme.css';
-@import 'primeng/resources/primeng.css';
+@import 'primeng/resources/themes/aura-light-purple/theme.css';
+@import 'primeng/resources/primeng.min.css';
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.scss';
+@import 'ngx-toastr/toastr';
 
-:root {
-  --bg-color: #eee;
+@layer reset, primeng;
+
+@layer reset {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-size: 100%;
+    font: inherit;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    padding: 0.5rem;
+  }
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
+:root {
+  --bg-color: #eee !important;
+
+  box-sizing: border-box !important;
+  font-family: 'Roboto', sans-serif !important;
   background-color: var(--bg-color);
+
+  label {
+    font-weight: bold !important;
+  }
+
+  button {
+    cursor: pointer !important;
+
+    &:disabled {
+      cursor: not-allowed !important;
+    }
+  }
 }
