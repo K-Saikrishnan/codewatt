@@ -1,6 +1,4 @@
-import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Signal } from '@angular/core';
 import { Idea } from '../../models/idea.model';
 import { IdeaService } from '../../services/idea.service';
 import { IdeaComponent } from '../idea/idea.component';
@@ -8,14 +6,14 @@ import { IdeaComponent } from '../idea/idea.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, IdeaComponent],
+  imports: [IdeaComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  public ideas$: Observable<Idea[]>;
+  public ideas: Signal<Idea[]>;
 
   constructor(private ideaService: IdeaService) {
-    this.ideas$ = this.ideaService.getIdeas();
+    this.ideas = this.ideaService.ideas;
   }
 }

@@ -5,7 +5,7 @@ permissions:
 
 on:
   push:
-    branches: [main, backend_setup]
+    branches: [main, project, backend_setup]
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:

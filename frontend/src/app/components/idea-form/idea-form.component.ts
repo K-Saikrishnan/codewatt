@@ -34,9 +34,8 @@ export class IdeaFormComponent implements OnInit {
   }
 
   createIdea() {
-    this.ideaService.createIdea(this.ideaForm.value).subscribe(() => {
-      this.toastr.success('Idea created successfully');
-      this.router.navigate(['/']);
-    });
+    this.ideaService.createIdea(this.ideaForm.value);
+    this.toastr.success('Idea created successfully');
+    this.router.navigate(['/']);
   }
 }

@@ -1,7 +1,14 @@
-<form autocomplete="on" autocapitalize="on" spellcheck="true" [formGroup]="ideaForm" (ngSubmit)="createIdea()">
+<form
+  class="w mx-auto mt-20"
+  autocomplete="on"
+  autocapitalize="on"
+  spellcheck="true"
+  [formGroup]="ideaForm"
+  (ngSubmit)="createIdea()"
+>
   <section class="p-fluid">
     <label for="title">Title (max 50 chars)</label>
-    <input id="title" type="text" [maxLength]="50" [required]="true" pInputText formControlName="title" />
+    <input id="title" class="h-10" type="text" [maxLength]="50" [required]="true" pInputText formControlName="title" />
   </section>
 
   <section class="p-fluid">
@@ -21,5 +28,5 @@
     <p-chips id="tags" [max]="7" separator="," [required]="true" formControlName="tags" />
   </section>
 
-  <p-button size="small" type="submit" [disabled]="ideaForm.invalid">Create</p-button>
+  <p-button size="small" styleClass="mx-auto mt-5 block" type="submit" [disabled]="ideaForm.invalid">Create</p-button>
 </form>

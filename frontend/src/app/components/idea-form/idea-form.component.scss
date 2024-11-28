@@ -1,20 +1,10 @@
 form {
   width: 500px;
-  margin: 5rem auto;
 
   section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     margin-top: 1.5rem;
-  }
-}
-
-:host ::ng-deep {
-  .p-button {
-    display: block;
-    margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
   }
 }

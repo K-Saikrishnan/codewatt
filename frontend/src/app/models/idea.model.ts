@@ -3,7 +3,6 @@ export interface Idea {
   title: string;
   description: string;
   tags: string[];
-  votes: number;
   createdTs: Date;
   updatedTs: Date;
 }
