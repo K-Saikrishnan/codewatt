@@ -1,5 +1,5 @@
 export interface Idea {
-  id: number;
+  ideaId: number;
   title: string;
   description: string;
   tags: string[];

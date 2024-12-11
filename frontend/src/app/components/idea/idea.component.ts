@@ -1,4 +1,4 @@
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
@@ -12,7 +12,7 @@ import { IdeaService } from '../../services/idea.service';
 @Component({
   selector: 'app-idea',
   standalone: true,
-  imports: [NgClass, DatePipe, ButtonModule, CardModule, ChipModule, TooltipModule, TagModule],
+  imports: [DatePipe, ButtonModule, CardModule, ChipModule, TooltipModule, TagModule],
   templateUrl: './idea.component.html',
   styleUrl: './idea.component.scss',
 })
@@ -27,8 +27,6 @@ export class IdeaComponent {
   ) {}
 
   deleteIdea(): void {
-    this.ideaService.deleteIdea(this.idea.id).subscribe(() => {
-      this.toastr.success('Idea deleted successfully');
-    });
+    this.ideaService.deleteIdea(this.idea.ideaId);
   }
 }

@@ -1,5 +1,5 @@
 <main class="mt-6">
-  @for (idea of ideas(); track idea.id) {
+  @for (idea of ideas(); track idea.ideaId) {
     <app-idea [idea]="idea"></app-idea>
   } @empty {
     <p>No ideas found</p>

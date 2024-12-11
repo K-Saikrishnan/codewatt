@@ -1,62 +1,49 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
-import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, signal, Signal, WritableSignal } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ENV } from '../constants';
 import { Idea, NewIdea } from '../models/idea.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IdeaService {
-  private _ideas: WritableSignal<Idea[]>;
+  private _ideas: WritableSignal<Idea[]> = signal([]);
 
-  constructor() {
-    this._ideas = signal([
-      {
-        id: 1,
-        title: 'Idea 1',
-        description: 'Description 1',
-        tags: ['tag1', 'tag2'],
-        createdTs: new Date(),
-        updatedTs: new Date(),
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+  ) {
+    this.http.get<Idea[]>(`${ENV.API_URL}`).subscribe({
+      next: (ideas) => {
+        this._ideas.set(ideas);
       },
-      {
-        id: 2,
-        title: 'Idea 2',
-        description: 'Description 2',
-        tags: ['tag1', 'tag2'],
-        createdTs: new Date(),
-        updatedTs: new Date(),
+      error: () => {
+        this._ideas.set([]);
       },
-    ]);
+    });
   }
-
   get ideas(): Signal<Idea[]> {
     return this._ideas;
   }
 
   createIdea(newIdea: NewIdea) {
-    this._ideas.update((ideas) =>
-      ideas.concat({
-        id: this._ideas.length + 1,
-        ...newIdea,
-        createdTs: new Date(),
-        updatedTs: new Date(),
-      }),
-    );
-  }
-
-  updateIdea(idea: Idea) {
-    const idx = this._ideas().findIndex((i) => i.id === idea.id);
-
-    this._ideas.update((ideas) => {
-      ideas[idx] = idea;
-
-      return ideas;
+    this.http.post<Idea[]>(`${ENV.API_URL}`, newIdea).subscribe({
+      next: (newIdeas) => {
+        this._ideas.set(newIdeas);
+      },
     });
   }
 
-  deleteIdea(id: Idea['id']) {
-    this._ideas.update((ideas) => ideas.filter((idea) => idea.id !== id));
-
-    return of(true);
+  deleteIdea(ideaId: Idea['ideaId']) {
+    this.http.delete(`${ENV.API_URL}/${ideaId}`).subscribe({
+      next: () => {
+        this._ideas.update((ideas) => ideas.filter((idea) => idea.ideaId !== ideaId));
+        this.toastr.success('Idea deleted successfully');
+      },
+      error: () => {
+        this.toastr.error('Idea could not be deleted');
+      },
+    });
   }
 }

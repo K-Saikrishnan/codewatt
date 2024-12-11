@@ -1,6 +1,7 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
+import { provideHttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
@@ -12,6 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     importProvidersFrom([BrowserModule]),
     importProvidersFrom([BrowserAnimationsModule]),
+    provideHttpClient(),
     provideToastr({ closeButton: true, progressBar: true, positionClass: 'toast-bottom-center' }),
   ],
 };

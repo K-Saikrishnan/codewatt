@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "name": "LiteStar",
+      "type": "debugpy",
+      "console": "internalConsole",
+      "request": "launch",
+      "module": "litestar",
+      "args": ["run", "-r"],
+      "cwd": "${workspaceFolder}/backend"
+    }
+  ]
+}
